@@ -13,16 +13,24 @@
 
 <body>
 
-    <header class="bg-success text-light text-center py-4" style="border-radius: 20px; border-style: groove; border-color: brown; border-width: thick;">
+    <header class="bg-success text-light text-center py-4"
+        style="border-radius: 20px; border-style: groove; border-color: brown; border-width: thick;">
         <h1>Sai Krishna Reddy Seelam Speed Check</h1>
     </header>
     <div class="container mt-4 text-white" style="text-align: center;">
-        
-            <div id="target" class="alert bg-warning" style="text-align: center; border-style: outset; border-radius: 0px 20px 0px 20px; border-color: black; margin-left: 200px; margin-right: 200px;";>Your time: </div>
-            <div id="counter" class="alert bg-primary" style="height: 50px; margin-left: 250px; border-style: outset; border-color: black; margin-right: 250px; border-radius: 20px 0px 20px 0px;">Count: </div>
-            <button id="startTimer" class="alert bg-danger" style="height: 50px; border-style: double; border-color: black;">Start Timer</button><br>
-            <button id="react" class="alert bg-info" style="height: 50px; border-style: outset; border-color: black; " onclick="recordTime()">React</button>
-        
+
+        <div id="target" class="alert bg-warning"
+            style="text-align: center; border-style: outset; border-radius: 0px 20px 0px 20px; border-color: black; margin-left: 200px; margin-right: 200px;"
+            ;>Your time: </div>
+        <div id="counter" class="alert bg-primary"
+            style="height: 50px; margin-left: 250px; border-style: outset; border-color: black; margin-right: 250px; border-radius: 20px 0px 20px 0px;">
+            Count: </div>
+        <button id="startTimer" class="alert bg-danger"
+            style="height: 50px; border-style: double; border-color: black;">Start Timer</button><br>
+        <button id="react" class="alert bg-info" style="height: 50px; border-style: outset; border-color: black; "
+            onclick="recordTime()">React</button><br>
+        <button class="btn btn-warning btn-new-game" class="alert bg-danger" onclick="random()">Random</button>
+
     </div>
 
     <script>
@@ -53,8 +61,36 @@
             }, 8000);
         }
 
+        function random() {
+            reactTime = undefined;
+            document.getElementById('target').innerText = 'Your time: ';
+            document.getElementById('counter').innerText = 'Count: ';
+
+            let countdownTime = Math.floor(Math.random() * (10 - 2 + 1)) + 2;
+
+            let tooSlowTimeout = setTimeout(() => {
+                document.getElementById('target').innerText = 'Too Slow';
+            }, countdownTime * 1000);
+
+            for (let i = countdownTime; i >= 0; i--) {
+                setTimeout(() => {
+                    document.getElementById('counter').innerText = `Count: ${i}`;
+                }, (countdownTime - i) * 1000);
+            }
+
+            setTimeout(() => {
+                clearTimeout(tooSlowTimeout);
+                if (reactTime === undefined) {
+                    document.getElementById('target').innerText = 'Too Slow';
+                } else {
+                    let endTime = Date.now();
+                    let elapsedTime = endTime - reactTime;
+                    document.getElementById('target').innerText = `Your time: ${elapsedTime} milliseconds`;
+                }
+            }, countdownTime * 1000);
+        }
+
         document.getElementById("startTimer").onclick = startTime;
     </script>
 </body>
-
 </html>
