@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merger WebPage</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1 class="bg-primary"
+            style="font-family: 'Times New Roman', Times, serif; text-align: center; border-radius: 0px 35px 0px 35px ; margin-left: 150px; margin-right: 150px; margin-top: 50px; ">
+            Sai Krishna Reddy
+            Seelam Builds a Merger</h1>
+    </header>
+    <div class="container mt-5"
+        style="background-color: rgb(110, 130, 147); border-radius: 20px 15px 20px 15px; margin-left: 100px; margin-right: 150px;">
+        <div class="form-group" style="text-align: center;">
+            <input type="text" class="form-control" id="inputText" placeholder="Enter text">
+        </div>
+        <button class="btn btn-primary" id="addEnd">Add end</button>
+        <button class="btn btn-success" id="addFront">Add front</button>
+        <button class="btn btn-danger" id="remove">Remove</button>
+        <!-- <button class="btn btn-primary" onclick="swapElements()">swap</button> -->
+        <div class="list-group mt-3" id="container">
+        <div class="list-group-item merger" style="background-color: aquamarine; text-align: center;">Row Item1</div>
+        </div>
+    </div>
+
+    <script>
+        const addEndButton = document.getElementById("addEnd");
+        const addFrontButton = document.getElementById("addFront");
+        const removeButton = document.getElementById("remove");
+        const inputText = document.getElementById("inputText");
+        const container = document.getElementById("container");
+
+        addEndButton.onclick = function centerText() {
+            const newValue = inputText.value;
+            if (newValue !== "") {
+                const newElement = document.createElement("div");
+                newElement.classList.add("list-group-item", "merger");
+                newElement.innerHTML = newValue;
+                container.appendChild(newElement);
+                inputText.value = "";
+                newElement.style.textAlign = "center";
+            }
+        };
+
+        removeButton.onclick = function () {
+            const mergerItems = document.getElementsByClassName("merger");
+            const length = mergerItems.length;
+            if (length > 0) {
+                const middleIndex = Math.floor(length / 2);
+                container.removeChild(mergerItems[middleIndex]);
+            }
+        };
+
+        addFrontButton.onclick = function centerText() {
+            const newValue = inputText.value;
+            if (newValue !== "") {
+                const newElement = document.createElement("div");
+                newElement.classList.add("list-group-item", "merger");
+                newElement.innerHTML = newValue;
+                container.insertBefore(newElement, container.firstChild);
+                inputText.value = "";
+                newElement.style.textAlign = "center";
+
+            }
+        };
+
+        function swapElements() {
+        const elements = document.querySelectorAll('.merger');
+        const index1 = Math.floor(Math.random() * elements.length);
+        let index2 = Math.floor(Math.random() * elements.length);
+
+        while (index2 === index1) {
+            index2 = Math.floor(Math.random() * elements.length);
+        }
+
+        const parent = elements[0].parentNode;
+        const tempNode = document.createElement('div');
+
+        parent.insertBefore(tempNode, elements[index1]);
+        parent.insertBefore(elements[index1], elements[index2 + 1]);
+        parent.insertBefore(elements[index2], tempNode);
+        parent.removeChild(tempNode);
+    }
+
+    </script>
+</body>
+
+</html>
