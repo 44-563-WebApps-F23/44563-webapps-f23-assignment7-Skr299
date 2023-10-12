@@ -6,4 +6,4 @@ An assignment on java script modifying the DOM and using anonymous callback func
 <br>
 [React Page](https://44-563-webapps-f23.github.io/44563-webapps-f23-assignment7-Skr299/react.html)
 <br>
-[Merger Page](https://44-563-webapps-f23.github.io/44563-webapps-f23-assignment7-Skr299/Merger.html)
+[Merger Page](https://44-563-webapps-f23.github.io/44563-webapps-f23-assignment7-Skr299/merger.html)
