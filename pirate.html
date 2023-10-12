@@ -33,7 +33,7 @@
             <p>Help report</p>
         </div>
         <div style="text-align: center;">
-        <button type="button" class="btn btn-primary" onclick="newGame()">New Game</button>
+            <button type="button" class="btn btn-primary" onclick="newGame()">New Game</button>
         </div>
     </div>
 
@@ -114,8 +114,8 @@
         var checkCount = 0;
         var penalty = 0;
         var lastCheck = 0;
-        var treasureLocation = Math.floor(Math.random()*24);
-        var trapLocation = Math.floor(Math.random()*24);
+        var treasureLocation = Math.floor(Math.random() * 24);
+        var trapLocation = Math.floor(Math.random() * 24);
         var gameOver = false;
 
         function check(position) {
@@ -134,8 +134,8 @@
                 penalty += 4;
             } else {
                 image.src = "Pirate.jpg";
-                penalty +=1;
-                checkCount +=1;
+                penalty += 1;
+                checkCount += 1;
             }
             document.getElementById("locations").textContent = "Number of locations checked is : " + checkCount;
             document.getElementById("penalty").textContent = "Penality is : " + penalty;
@@ -173,17 +173,17 @@
         }
 
         function newGame() {
-          treasureLocation=Math.floor(Math.random()*24);
-          trapLocation=Math.floor(Math.random()*24);
-          checkCount=0
-          penalty=0
-          lastCheck=0
-          gameOver=false
-          document.getElementById("penalty").textContent="Penalty is 0";
-          document.getElementById("locations").textContent="Number of locations checked is 0";
-          for (i = 0; i < 25; i++) {
-            document.getElementById(ids[i]).src = "Location.jpg";
-          }
+            treasureLocation = Math.floor(Math.random() * 24);
+            trapLocation = Math.floor(Math.random() * 24);
+            checkCount = 0
+            penalty = 0
+            lastCheck = 0
+            gameOver = false
+            document.getElementById("penalty").textContent = "Penalty is 0";
+            document.getElementById("locations").textContent = "Number of locations checked is 0";
+            for (i = 0; i < 25; i++) {
+                document.getElementById(ids[i]).src = "Location.jpg";
+            }
         }
 
         document.getElementById("help-button").onclick = help;
